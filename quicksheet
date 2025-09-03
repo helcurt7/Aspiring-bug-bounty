@@ -1,0 +1,61 @@
+#use python to script
+python3 blablabla.py
+#use php to script
+php hawk.php
+
+#bruteforce directory
+gobuster -u website -w wordlistlikerockyou.txt
+dirb httpswebsite /usr/share/wordlists/dirb
+
+#lookup website details
+nslookup website
+output: 
+  show server soaj
+       adress valbal those are your server details
+
+      name:ssss
+      adresss :  those are website details
+
+whatweb -a 3 -v http://example.com > result.txt
+whois website
+
+#check username on everysite
+sherlock username
+
+#scan emails
+
+theHarvester -d website -b all
+theHarvester -d <domain> -b <source> [-l <limit>] [-f <outputfile>]
+Key options:
+-d <domain> → the target domain (e.g., example.com)
+
+-b <source> → the data source
+
+Examples: google, bing, linkedin, twitter, crtsh, shodan, all
+
+-l <limit> → number of results to fetch (default = 500)
+
+-f <file> → save results in an HTML or XML file
+
+⚡ Example
+Gather from all sources
+
+bash
+Copy code
+theHarvester -d example.com -b all
+Limit results (100 max)
+
+bash
+Copy code
+theHarvester -d example.com -b google -l 100
+Save output to file
+
+bash
+Copy code
+theHarvester -d example.com -b all -f report.html
+
+hunter.io (gui on mozila firefox)
+
+
+
+
