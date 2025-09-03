@@ -1,0 +1,16 @@
+use burpsuite proxy intercept then change the html in the form see isit affect the website
+
+HTML code redirecting
+
+inject with burpsuite on phpssessionid=<meta http-equiv="refresh" content=5 ; URL = http(websit u wan to redirect)>
+
+<a onclick="document.location.href='<h1>TEST</h1>';"></a> wrong u need to close it first '; document.body.innerHTML = '<h1>TEST</h1>'; //
+
+if can viewsource code
+3️⃣ Reflection Testing
+Send a unique string (like ABC123XYZ) as input.
+Look at the response page to see where and how it comes back.
+That tells you the context:
+Inside an HTML tag? (need to close >)
+Inside quotes? (need to close ")
+Inside JavaScript? (need to close ; or "))
