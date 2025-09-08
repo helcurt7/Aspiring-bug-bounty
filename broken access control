@@ -1,0 +1,7 @@
+change  php?note=1 to 0 (simply eg and u log in as admin)
+
+owasp 2013
+A4 insecure direct object reference (IDOR)
+source viewer
+
+use brupsuite change the page=login into page=/etc/passwd OR add &ticket_price=(any)/&password=()
