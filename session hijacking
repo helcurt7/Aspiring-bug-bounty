@@ -1,0 +1,19 @@
+simple eg. of broken authentication(whichi is  a  logic flaw when creating website)
+1.u know an existing user username(darren) and change example by adding a space infront ( darren)
+2.then u can just login with whatever password 
+user = findUser(trim(username))   // " darren" → "darren"
+
+if user exists:
+    if (username == user.username):   // raw compare " darren" vs "darren"
+        // not equal → bug: developer assumes "user is verified already"
+        login success   // ❌ password check skipped here!
+    else if (password == user.password):
+        login success
+    else:
+        login failed
+else:
+    login failed
+tips
+#sometimes we can use burpsuite tochange hte cookies value or uid we might get into others user session
+#or even intercept and find for password that encrypted in base64 where it end with = and get someting like guest:guest then we login as new browser with a new tab or ignocito mode because our session ID need to be change
+#webpage that does not log out the user after several attempt are suitable for bruteforce attack with burpsuite sniper or cluster bomb thne find the length that are diff form all that is signed of login success 
