@@ -1,0 +1,3 @@
+tryhackme owasp top 10 
+1.eg u view page source and see some comment indicating /asset dir for the werbsite u open sqlite3 asset.db select*from user u see user hash go crack station.net /hashcat
+2.or u saw the github leaks some password or they have a default password
