@@ -14,3 +14,4 @@ That tells you the context:
 Inside an HTML tag? (need to close >)
 Inside quotes? (need to close ")
 Inside JavaScript? (need to close ; or "))
+sometimes got filter just always try with ; first if can then bypass the filter isit filter with above stated syntax?
