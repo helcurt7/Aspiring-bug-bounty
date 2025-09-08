@@ -1,0 +1,11 @@
+conditions web that:
+accept manually provide session ID that is static/not regeneerating
+1.burpsuite intercept add eg. &SID=555(any) and the sid follow the web format 
+eg. java : ;jsessionid=
+eg. php  :  ?SID=              this php use ? as seperation
+
+2. then send phising email to the victim the victim then login with his own account
+
+3.after they login by changing or adding the sessionID we set on the website we are on the same session with them and we are login to thier account. 
+
+
