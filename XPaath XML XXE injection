@@ -1,0 +1,77 @@
+means query language used to navigate XML documents 
+
+1. XPath Injection
+
+XPath is a query language used to navigate XML documents (similar to how SQL is used for databases).
+
+Vulnerable Example:
+ 
+<users>
+    <user>
+        <username>alice</username>
+        <password>12345</password>
+    </user>
+</users>
+
+
+If the backend code uses something like:
+
+/users/user[username/text()='$user' and password/text()='$pass']
+
+
+and directly inserts user input ($user, $pass), an attacker can inject XPath syntax.
+
+Injection Example:
+If the attacker enters:
+
+' or '1'='1
+
+
+The query becomes:
+
+/users/user[username/text()='' or '1'='1' and password/text()='']
+
+
+This will always return true, bypassing login.
+
+✅ Main Idea: Like SQL injection, but it manipulates XPath queries instead of SQL queries.
+
+2. XXE Injection (XML External Entity Injection)
+
+XXE happens when an XML parser is misconfigured and allows external entities to be defined and expanded.
+
+Vulnerable Example Input:
+
+<?xml version="1.0"?>
+<!DOCTYPE foo [ 
+  <!ENTITY xxe SYSTEM "file:///etc/passwd"> 
+]>
+<root>
+  <login>&xxe;</login>
+</root>
+
+
+What happens:
+The parser sees &xxe;, replaces it with the contents of /etc/passwd, and leaks sensitive files.
+
+Impacts:
+
+File disclosure (read local files like /etc/passwd).
+
+SSRF (make server request to attacker-controlled URL).
+
+Denial of Service (billion laughs attack).
+
+✅ Main Idea: It abuses XML parsers to access local files or remote systems.
+
+Difference Between Them
+
+XPath Injection → Attacks queries (like SQLi but for XML data).
+
+XXE Injection → Attacks parsers (abuses XML processing features).
+
+👉 From your notes:
+
+Top part = XPath Injection (login bypass using injected queries).
+
+Bottom part = XXE Injection (entity expansion to read files).
