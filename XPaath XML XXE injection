@@ -30,6 +30,11 @@ If the attacker enters:
 The query becomes:
 
 /users/user[username/text()='' or '1'='1' and password/text()='']
+![Screenshot 1](https://raw.githubusercontent.com/helcurt7/Aspiring-bug-bounty/main/Screenshot%202025-09-09%20191202.png)
+
+![Screenshot 2](https://raw.githubusercontent.com/helcurt7/Aspiring-bug-bounty/main/Screenshot%202025-09-09%20191242.png)
+
+![Screenshot 3](https://raw.githubusercontent.com/helcurt7/Aspiring-bug-bounty/main/Screenshot%202025-09-09%20191346.png)
 
 
 This will always return true, bypassing login.
@@ -61,6 +66,7 @@ File disclosure (read local files like /etc/passwd).
 SSRF (make server request to attacker-controlled URL).
 
 Denial of Service (billion laughs attack).
+![image](https://github.com/helcurt7/Aspiring-bug-bounty/blob/main/Screenshot%202025-09-09%20192108.png)
 
 ✅ Main Idea: It abuses XML parsers to access local files or remote systems.
 
